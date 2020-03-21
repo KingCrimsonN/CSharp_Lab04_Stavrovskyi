@@ -8,6 +8,7 @@ using Sharp_lab03_stavrovskyi.Exceptions;
 using Sharp_lab03_stavrovskyi.Managers;
 using Sharp_lab03_stavrovskyi.Models;
 using Sharp_lab03_stavrovskyi.Tools;
+using Sharp_lab03_stavrovskyi.Tools.Managers;
 using Sharp_lab03_stavrovskyi.Tools.Navigation;
 
 namespace Sharp_lab03_stavrovskyi.ViewModels
@@ -33,6 +34,7 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
         private string _wZodiacString;
 
         private RelayCommand<object> _calculateCommand;
+        private RelayCommand<object> _switchToDataCommand;
 
         #endregion
 
@@ -178,6 +180,20 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
             }
         }
 
+        public RelayCommand<object> SwitchToDataCommand
+        {
+            get
+            {
+                return _switchToDataCommand ?? (_switchToDataCommand =
+                    new RelayCommand<object>(SwitchToData, o => CanExecuteCommand()));
+            }
+        }
+
+        private void SwitchToData(object o)
+        {
+            NavigationManager.Instance.Navigate(ViewType.Data);
+        }
+
 
 
         private async void Calculate(object o)
@@ -185,7 +201,7 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
             LoaderManager.Instance.ShowLoader();
             try
             {
-                if (!_savedDate.Equals(_date))
+                if (!StationManager.DataStorage.UserExists(_name, _surname))
                 {
                     CleanUi();
                     _savedDate = _date;
@@ -193,6 +209,8 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
                     _currentPerson = new Person(_name, _surname, _email, _date);
                     await Task.Run((() =>
                     {
+                        StationManager.DataStorage.AddUser(_currentPerson);
+                        StationManager.CurrentUser = _currentPerson;
                         DateString = "Birthday: " + _date.Day + "." + _date.Month + "." + _date.Year;
                         AgeString = "Age: " + _currentPerson.Age;
                         WZodiacString = "Western Zodiac " + _currentPerson.SunSign;
@@ -207,6 +225,10 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
                         MessageBox.Show("Happy Birthday!");
                     else MessageBox.Show("Your age and astrological symbols have been calculated, have a look!");
                     
+                }
+                else
+                {
+                    MessageBox.Show("This user already exists!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (NotBornException e)
@@ -225,7 +247,7 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
                 _savedDate = DateTime.Now;
             }
             LoaderManager.Instance.HideLoader();
-            NavigationManager.Instance.Navigate(ViewType.Data);
+
         }
 
         public bool CanExecuteCommand()
@@ -247,17 +269,6 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
             EmailString = "";
             AdultString = "";
             AdultString = "";
-        }
-
-
-        private bool DateIsValid()
-        {
-            int diff = CalculateAge();
-            if (diff < 0)
-                throw (new NotBornException("The person wasn't born yet"));
-            if (diff > 135)
-                throw (new TooOldException("The person is too old to be alive"));
-            return true;
         }
 
         private int CalculateAge()

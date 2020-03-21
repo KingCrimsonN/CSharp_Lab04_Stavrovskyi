@@ -11,7 +11,7 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
         #region Fields
         private Visibility _loaderVisibility = Visibility.Hidden;
         private bool _isControlEnabled = true;
-        private ICommand _returnCommand;
+        
         #endregion
 
         #region Properties
@@ -42,15 +42,7 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
 
         #region Commands
 
-        public ICommand ReturnCommand
-        {
-            get { return _returnCommand ?? (_returnCommand = new RelayCommand<object>(ReturnImplementation)); }
-        }
-
-        private void ReturnImplementation(object o)
-        {
-            NavigationManager.Instance.Navigate(ViewType.Login);
-        }
+       
 
         #endregion
     }

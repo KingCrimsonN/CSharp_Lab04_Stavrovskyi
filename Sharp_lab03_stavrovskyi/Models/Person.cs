@@ -4,10 +4,12 @@ using Sharp_lab03_stavrovskyi.Exceptions;
 
 namespace Sharp_lab03_stavrovskyi.Models
 {
+    [Serializable]
     class Person
     {
 
         #region Fields
+        private Guid _guid;
         private string _name;
         private string _surname;
         private string _email;
@@ -18,6 +20,18 @@ namespace Sharp_lab03_stavrovskyi.Models
         #endregion
 
         #region Properties
+
+        public Guid Guid
+        {
+            get
+            {
+                return _guid;
+            }
+            private set
+            {
+                _guid = value;
+            }
+        }
 
         public string Name
         {
@@ -37,10 +51,10 @@ namespace Sharp_lab03_stavrovskyi.Models
             set { _email = value; }
         }
 
-        private DateTime Birthdate
+        public DateTime Birthdate
         {
             get { return _birthday; }
-            set { _birthday = value; }
+            private set { _birthday = value; }
         }
 
         public int Age
@@ -77,6 +91,7 @@ namespace Sharp_lab03_stavrovskyi.Models
 
         internal Person(string name, string surname, string email, DateTime bd)
         {
+            _guid = Guid.NewGuid();
             _name = name;
             _surname = surname;
             _email = email;

@@ -1,7 +1,9 @@
 ﻿
 using System.Windows;
 using System.Windows.Controls;
+using Sharp_lab03_stavrovskyi.DataStorage;
 using Sharp_lab03_stavrovskyi.Managers;
+using Sharp_lab03_stavrovskyi.Tools.Managers;
 using Sharp_lab03_stavrovskyi.Tools.Navigation;
 using Sharp_lab03_stavrovskyi.ViewModels;
 
@@ -20,6 +22,7 @@ namespace Sharp_lab03_stavrovskyi
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+            StationManager.Initialize(new SerializedDataStorage());
             NavigationManager.Instance.Initialize(new InitializationNavigationModel(this));
             NavigationManager.Instance.Navigate(ViewType.Login);
         }

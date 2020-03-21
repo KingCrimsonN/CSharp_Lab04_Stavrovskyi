@@ -15,6 +15,19 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" Foreground="White" Background="Black"  HorizontalAlignment="Center" Width="150" Content="Proceed" Command ="{Binding ReturnCommand}"></Button>
-    </Grid>
+        <Button Grid.Row="1" Grid.Column="0" Foreground="White" Background="Black"  HorizontalAlignment="Center" Width="150" Content="Proceed" Command ="{Binding ReturnCommand}"></Button>
+        <DataGrid ItemsSource="{Binding Users, Mode=OneWay}" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Guid}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="Adult" Binding="{Binding IsAdult, Mode=OneWay}"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat=\{0:dd MMM yy\} }"></DataGridTextColumn>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chinese Zodiac" Binding="{Binding SunSign}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Western Zodiac" Binding="{Binding ChineseSign}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+</Grid>
 </UserControl>

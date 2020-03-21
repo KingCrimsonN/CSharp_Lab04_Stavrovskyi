@@ -12,7 +12,7 @@ namespace Sharp_lab03_stavrovskyi.Views
         public DataWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            DataContext = new DataViewModel();
         }
     }
 }
