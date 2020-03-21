@@ -11,6 +11,8 @@ namespace Sharp_lab03_stavrovskyi.DataStorage
 
         void AddUser(Person user);
 
+        void DeleteUser(Person user);
+
         List<Person> UserList { get; }
     }
 }

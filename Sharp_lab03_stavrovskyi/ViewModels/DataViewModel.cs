@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using Sharp_lab03_stavrovskyi.Managers;
 using Sharp_lab03_stavrovskyi.Models;
@@ -11,9 +12,28 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
 {
     class DataViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Person> _users;
-        private ICommand _returnCommand;
+        #region Fields
 
+        
+
+        
+        private ObservableCollection<Person> _users;
+        private Person _currentUser;
+        private ICommand _returnCommand;
+        private ICommand _deleteCommand;
+        #endregion
+
+        #region Properties
+
+        public Person CurrentUser
+        {
+            get { return _currentUser; }
+            set
+            {
+                _currentUser = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<Person> Users
         {
@@ -25,10 +45,27 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
             }
         }
 
+        #endregion
+
         internal DataViewModel()
         {
             _users = new ObservableCollection<Person>(StationManager.DataStorage.UserList);
             
+        }
+
+        #region Commands
+
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<object>(DeleteUser)); }
+        }
+
+        private void DeleteUser(object o)
+        {
+            MessageBox.Show("Deleting the user");
+           
+            StationManager.DataStorage.DeleteUser(CurrentUser);
+            Users.Remove(_currentUser);
         }
 
         public ICommand ReturnCommand
@@ -47,5 +84,6 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
 }

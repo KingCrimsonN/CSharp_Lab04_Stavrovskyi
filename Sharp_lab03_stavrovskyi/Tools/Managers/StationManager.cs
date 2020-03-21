@@ -27,7 +27,7 @@ namespace Sharp_lab03_stavrovskyi.Tools.Managers
 
         internal static void CloseApp()
         {
-            MessageBox.Show("ShutDown");
+            //MessageBox.Show("ShutDown");
             StopThreads?.Invoke();
             Environment.Exit(1);
         }

@@ -16,18 +16,26 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="1" Grid.Column="0" Foreground="White" Background="Black"  HorizontalAlignment="Center" Width="150" Content="Proceed" Command ="{Binding ReturnCommand}"></Button>
-        <DataGrid ItemsSource="{Binding Users, Mode=OneWay}" AutoGenerateColumns="False" >
+        <DataGrid ItemsSource="{Binding Users, Mode=OneWay}" AutoGenerateColumns="False" SelectedItem="{Binding CurrentUser, Mode=OneWayToSource}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Guid}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="ID" Binding="{Binding Guid, Mode=OneWay}"></DataGridTextColumn>-->
+                <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname, Mode=TwoWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email, Mode=TwoWay}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="Adult" Binding="{Binding IsAdult, Mode=OneWay}"></DataGridCheckBoxColumn>
-                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat=\{0:dd MMM yy\} }"></DataGridTextColumn>
-                <DataGridTextColumn Header="Age" Binding="{Binding Age}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Chinese Zodiac" Binding="{Binding SunSign}"></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Header="Western Zodiac" Binding="{Binding ChineseSign}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat=\{0:dd MMM yy\} , Mode=OneWay }"></DataGridTextColumn>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age , Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chinese Zodiac" Binding="{Binding SunSign, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Western Zodiac" Binding="{Binding ChineseSign, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Delete" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Foreground="White" Background="Black" Command ="{Binding DeleteCommand}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Grid.Column="1" Grid.Row="0" Foreground="White" Background="Black" Content="DELETE" Command ="{Binding DeleteCommand}"></Button>
 </Grid>
 </UserControl>

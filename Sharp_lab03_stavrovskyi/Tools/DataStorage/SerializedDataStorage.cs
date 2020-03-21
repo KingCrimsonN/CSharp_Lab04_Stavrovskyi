@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Sharp_lab03_stavrovskyi.Managers;
 using Sharp_lab03_stavrovskyi.Models;
 using Sharp_lab03_stavrovskyi.Tools;
@@ -44,12 +43,18 @@ namespace Sharp_lab03_stavrovskyi.DataStorage
             SaveChanges();
         }
 
+        public void DeleteUser(Person user)
+        {
+            _users.Remove(user);
+            SaveChanges();
+        }
+
         public List<Person> UserList
         {
             get { return _users.ToList(); }
         }
 
-        private void SaveChanges()
+        internal void SaveChanges()
         {
             SerializationManager.Serialize(_users, FileFolderHelper.StorageFilePath);
         }

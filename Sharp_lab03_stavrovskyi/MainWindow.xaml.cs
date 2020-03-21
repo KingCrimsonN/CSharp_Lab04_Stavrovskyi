@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using Sharp_lab03_stavrovskyi.DataStorage;
@@ -14,6 +15,7 @@ namespace Sharp_lab03_stavrovskyi
     /// </summary>
     public partial class MainWindow : Window, IContentOwner
     {
+        private SerializedDataStorage _serializedDataStorage;
         public ContentControl ContentControl
         {
             get { return _contentControl; }
@@ -22,9 +24,17 @@ namespace Sharp_lab03_stavrovskyi
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
-            StationManager.Initialize(new SerializedDataStorage());
+            _serializedDataStorage = new SerializedDataStorage();
+            StationManager.Initialize(_serializedDataStorage);
             NavigationManager.Instance.Initialize(new InitializationNavigationModel(this));
             NavigationManager.Instance.Navigate(ViewType.Login);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _serializedDataStorage.SaveChanges();
+            base.OnClosing(e);
+            StationManager.CloseApp();
         }
     }
 }
