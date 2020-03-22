@@ -48,7 +48,11 @@ namespace Sharp_lab03_stavrovskyi.Models
         public string Email
         {
             get { return _email; }
-            set { _email = value; }
+            set
+            {
+                CheckEmail(value);
+                _email = value;
+            }
         }
 
         public DateTime Birthdate
@@ -94,8 +98,7 @@ namespace Sharp_lab03_stavrovskyi.Models
             _guid = Guid.NewGuid();
             _name = name;
             _surname = surname;
-            _email = email;
-            CheckEmail();
+            Email = email;
             _birthday = bd;
             _age = CalculateAge();
             CheckAge();
@@ -132,9 +135,9 @@ namespace Sharp_lab03_stavrovskyi.Models
                 throw (new NotBornException("The person couldn't've been born"));
         }
 
-        private void CheckEmail()
+        private void CheckEmail(string val)
         {
-            if (!(new EmailAddressAttribute().IsValid(_email)))
+            if (!(new EmailAddressAttribute().IsValid(val)))
                 throw (new Exceptions.EmailException("The email is invalid"));
 
         }
