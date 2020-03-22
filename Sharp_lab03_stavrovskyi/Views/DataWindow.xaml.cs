@@ -4,15 +4,18 @@ using Sharp_lab03_stavrovskyi.ViewModels;
 
 namespace Sharp_lab03_stavrovskyi.Views
 {
-    /// <summary>
-    /// Interaction logic for DataWindow.xaml
-    /// </summary>
-    public partial class DataWindow : UserControl, INavigatable
+   
+    public partial class DataWindow : UserControl, INavigatable, IUpdatable
     {
         public DataWindow()
         {
             InitializeComponent();
             DataContext = new DataViewModel();
+        }
+
+        public void Update()
+        {
+            ((DataViewModel)DataContext).Update();
         }
     }
 }

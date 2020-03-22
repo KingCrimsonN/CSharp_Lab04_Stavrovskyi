@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Sharp_lab03_stavrovskyi.Tools
 {
@@ -11,10 +9,10 @@ namespace Sharp_lab03_stavrovskyi.Tools
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
         internal static readonly string AppFolderPath =
-            Path.Combine(AppDataPath, "CSharpKMA");
+            Path.Combine(AppDataPath, "CSharpKMA_Stavrovskyi");
 
         internal static readonly string StorageFilePath =
-            Path.Combine(AppFolderPath, "Storage.cskma");
+            Path.Combine(AppFolderPath, "Lab04_Storage.cskma");
 
         internal static bool CreateFolderAndCheckFileExistance(string filePath)
         {

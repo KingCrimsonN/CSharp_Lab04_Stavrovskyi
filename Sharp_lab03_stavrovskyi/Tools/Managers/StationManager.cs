@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using Sharp_lab03_stavrovskyi.DataStorage;
 using Sharp_lab03_stavrovskyi.Models;
 

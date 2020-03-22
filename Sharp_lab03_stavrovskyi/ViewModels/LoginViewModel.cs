@@ -183,12 +183,17 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
             get
             {
                 return _switchToDataCommand ?? (_switchToDataCommand =
-                    new RelayCommand<object>(SwitchToData, o => CanExecuteCommand()));
+                    new RelayCommand<object>(SwitchToData, o => true));
             }
         }
 
         private void SwitchToData(object o)
         {
+            Name = "";
+            Surname = "";
+            Email = "";
+            Date = DateTime.MinValue;
+            CleanUi();
             NavigationManager.Instance.Navigate(ViewType.Data);
         }
 

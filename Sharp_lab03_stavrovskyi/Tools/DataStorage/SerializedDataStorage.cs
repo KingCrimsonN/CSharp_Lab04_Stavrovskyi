@@ -51,8 +51,12 @@ namespace Sharp_lab03_stavrovskyi.DataStorage
 
         public List<Person> UserList
         {
-            get { return _users.ToList(); }
+            get
+            { return _users.ToList(); }
+
         }
+
+        
 
         internal void SaveChanges()
         {

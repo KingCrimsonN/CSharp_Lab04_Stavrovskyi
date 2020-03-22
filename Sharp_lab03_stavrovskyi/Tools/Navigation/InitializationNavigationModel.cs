@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Sharp_lab03_stavrovskyi.Views;
 
 namespace Sharp_lab03_stavrovskyi.Tools.Navigation

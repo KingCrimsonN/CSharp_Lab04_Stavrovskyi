@@ -1,8 +1,7 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 using Sharp_lab03_stavrovskyi.Managers;
 using Sharp_lab03_stavrovskyi.Tools;
-using Sharp_lab03_stavrovskyi.Tools.Navigation;
+
 
 namespace Sharp_lab03_stavrovskyi.ViewModels
 {

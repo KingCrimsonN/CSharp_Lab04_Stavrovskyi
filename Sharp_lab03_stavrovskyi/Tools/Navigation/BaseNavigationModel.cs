@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+
 
 namespace Sharp_lab03_stavrovskyi.Tools.Navigation
 {
@@ -29,7 +28,10 @@ namespace Sharp_lab03_stavrovskyi.Tools.Navigation
         {
             if (!ViewsDictionary.ContainsKey(viewType))
                 InitializeView(viewType);
+            //if (ViewsDictionary[viewType].GetType().GetInterface("IUpdatable") != null)
+            //    ((IUpdatable)ViewsDictionary[viewType]).Update();
             ContentOwner.ContentControl.Content = ViewsDictionary[viewType];
+            
         }
 
         protected abstract void InitializeView(ViewType viewType);

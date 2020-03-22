@@ -55,6 +55,11 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
 
         #region Commands
 
+        public void Update()
+        {
+            //_users = new ObservableCollection<Person>(StationManager.DataStorage.UserList);
+        }
+
         public ICommand DeleteCommand
         {
             get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<object>(DeleteUser)); }
@@ -62,10 +67,17 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
 
         private void DeleteUser(object o)
         {
-            MessageBox.Show("Deleting the user");
-           
-            StationManager.DataStorage.DeleteUser(CurrentUser);
-            Users.Remove(_currentUser);
+            if (CurrentUser != null)
+            {
+                MessageBox.Show("Deleting the user");
+
+                StationManager.DataStorage.DeleteUser(CurrentUser);
+                Users.Remove(_currentUser);
+            }
+            else
+            {
+                MessageBox.Show("Please, select a user first!");
+            }
         }
 
         public ICommand ReturnCommand

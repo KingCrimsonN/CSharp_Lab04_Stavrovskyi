@@ -29,11 +29,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  Text="Enter your name: "/>
-        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" Text ="{Binding Name , Mode=OneWayToSource}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" Text ="{Binding Name , Mode=TwoWay}"></TextBox>
         <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="Enter your surname: "/>
-        <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" Text ="{Binding Surname , Mode=OneWayToSource}"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" Text ="{Binding Surname , Mode=TwoWay}"></TextBox>
         <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="Enter your email: "/>
-        <TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" Text ="{Binding Email, Mode=OneWayToSource}"></TextBox>
+        <TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Margin="5" Text ="{Binding Email, Mode=TwoWay}"></TextBox>
         <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="Enter your birthday date: "/>
         <DatePicker Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" MaxWidth="200" SelectedDate="{Binding Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" Background="Black"  HorizontalAlignment="Center" Width="150" Content="Proceed" Command ="{Binding CalculateCommand}"/>
