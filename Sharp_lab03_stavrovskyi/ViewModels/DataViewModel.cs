@@ -57,7 +57,7 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
 
         public void Update()
         {
-            //_users = new ObservableCollection<Person>(StationManager.DataStorage.UserList);
+            Users = new ObservableCollection<Person>(StationManager.DataStorage.UserList);
         }
 
         public ICommand DeleteCommand
@@ -72,7 +72,8 @@ namespace Sharp_lab03_stavrovskyi.ViewModels
                 MessageBox.Show("Deleting the user");
 
                 StationManager.DataStorage.DeleteUser(CurrentUser);
-                Users.Remove(_currentUser);
+                //Users.Remove(_currentUser);
+                Update();
             }
             else
             {

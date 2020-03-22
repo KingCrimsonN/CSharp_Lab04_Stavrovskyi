@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 
 
 namespace Sharp_lab03_stavrovskyi.Tools.Navigation
@@ -28,8 +29,11 @@ namespace Sharp_lab03_stavrovskyi.Tools.Navigation
         {
             if (!ViewsDictionary.ContainsKey(viewType))
                 InitializeView(viewType);
-            //if (ViewsDictionary[viewType].GetType().GetInterface("IUpdatable") != null)
-            //    ((IUpdatable)ViewsDictionary[viewType]).Update();
+            if (ViewsDictionary[viewType] is Sharp_lab03_stavrovskyi.Tools.Navigation.IUpdatable)
+            {
+                ((IUpdatable) ViewsDictionary[viewType]).Update();
+            }
+
             ContentOwner.ContentControl.Content = ViewsDictionary[viewType];
             
         }
